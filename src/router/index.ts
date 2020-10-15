@@ -4,6 +4,8 @@ import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
+import Layout from "@/layout/index.vue"
+
 const routes: Array<RouteConfig> = [
   {
     path: "/",
@@ -28,6 +30,23 @@ const routes: Array<RouteConfig> = [
       path: "/eleme",
       name: "Eleme",
       component: () => import("../views/eleme/index.vue")
+  },
+  {
+      path: "/",
+      redirect: "/dashboard",
+      component: Layout,
+      children: [
+          {
+              path: "dashboard",
+              component: () => import("@/views/dashboard/index.vue"),
+              name: "Dashboard",
+              meta: {
+                  title: "dashboard",
+                  icon: "dashboard",
+                  affix: true
+              }
+          }
+      ]
   }
 ];
 

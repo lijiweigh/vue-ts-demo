@@ -1,1 +1,10 @@
 1. mock
+2. src/lang
+3. src/utils
+4. src/store
+5. src/icons
+6. src/permissions.ts
+7. src/settings.ts
+8. src/pwa
+9. src/directives
+10. src/filters
