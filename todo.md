@@ -8,3 +8,7 @@
 8. src/pwa
 9. src/directives
 10. src/filters
+11. el-scrollbar
+12. transition-group
+13. fuse.js
+14. nprogress
