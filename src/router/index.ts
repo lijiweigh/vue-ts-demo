@@ -1,57 +1,37 @@
-import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
-
-Vue.use(VueRouter);
-
+import Vue from "vue"
+import Router, { RouteConfig } from "vue-router"
 import Layout from "@/layout/index.vue"
 
-const routes: Array<RouteConfig> = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  },
-  {
-      path: "/test",
-      name: "Test",
-      component: () => import("../views/test.vue")
-  },
-  {
-      path: "/eleme",
-      name: "Eleme",
-      component: () => import("../views/eleme/index.vue")
-  },
-  {
-      path: "/",
-      redirect: "/dashboard",
-      component: Layout,
-      children: [
-          {
-              path: "dashboard",
-              component: () => import("@/views/dashboard/index.vue"),
-              name: "Dashboard",
-              meta: {
-                  title: "dashboard",
-                  icon: "dashboard",
-                  affix: true
-              }
-          }
-      ]
-  }
-];
+Vue.use(Router)
 
-const router = new VueRouter({
-  routes
-});
+export const constantRoutes: RouteConfig[] = [
+    {
+        name: "Layout",
+        path: "/",
+        component: Layout
+    }
+]
 
-export default router;
+export const asyncRoutes: RouteConfig[] = []
+
+const createRouter = () => {
+    return new Router({
+        scrollBehavior(to, from, savedPosition) {
+            if(savedPosition) {
+                return savedPosition
+            } else {
+                return {x: 0, y: 0}
+            }
+        },
+        routes: constantRoutes,
+    })
+}
+
+const router = createRouter()
+
+export function resetRouter() {
+    const newRouter = createRouter();
+    (router as any).matcher = (newRouter as any).matcher
+}
+
+export default router

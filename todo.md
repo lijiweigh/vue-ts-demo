@@ -12,3 +12,4 @@
 12. transition-group
 13. fuse.js
 14. nprogress
+15. screenfull

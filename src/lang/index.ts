@@ -1,45 +1,119 @@
-import Vue from 'vue'
-import VueI18n from 'vue-i18n'
+// import Vue from 'vue'
+// import VueI18n from 'vue-i18n'
 
-import { getLanguage } from '@/utils/cookies'
+// import { getLanguage } from '@/utils/cookies'
 
-// element-ui built-in lang
-import elementEnLocale from 'element-ui/lib/locale/lang/en'
-import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'
-import elementEsLocale from 'element-ui/lib/locale/lang/es'
-import elementJaLocale from 'element-ui/lib/locale/lang/ja'
-import elementKoLocale from 'element-ui/lib/locale/lang/ko'
+// // element-ui built-in lang
+// import elementEnLocale from 'element-ui/lib/locale/lang/en'
+// import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'
+// import elementEsLocale from 'element-ui/lib/locale/lang/es'
+// import elementJaLocale from 'element-ui/lib/locale/lang/ja'
+// import elementKoLocale from 'element-ui/lib/locale/lang/ko'
 
-// User defined lang
-import enLocale from './en'
-import zhLocale from './zh'
-import esLocale from './es'
-import jaLocale from './ja'
-import koLocale from './ko'
-import itLocale from './it'
+// // User defined lang
+// import enLocale from './en'
+// import zhLocale from './zh'
+// import esLocale from './es'
+// import jaLocale from './ja'
+// import koLocale from './ko'
+// import itLocale from './it'
 
-Vue.use(VueI18n)
+// Vue.use(VueI18n)
+
+// const messages = {
+//   en: {
+//     ...enLocale,
+//     ...elementEnLocale
+//   },
+//   zh: {
+//     ...zhLocale,
+//     ...elementZhLocale
+//   },
+//   es: {
+//     ...esLocale,
+//     ...elementEsLocale
+//   },
+//   ja: {
+//     ...jaLocale,
+//     ...elementJaLocale
+//   },
+//   ko: {
+//     ...koLocale,
+//     ...elementKoLocale
+//   },
+//   it: {
+//     ...itLocale
+//   }
+// }
+
+// export const getLocale = () => {
+//   const cookieLanguage = getLanguage()
+//   if (cookieLanguage) {
+//     return cookieLanguage
+//   }
+
+//   const language = navigator.language.toLowerCase()
+//   const locales = Object.keys(messages)
+//   for (const locale of locales) {
+//     if (language.indexOf(locale) > -1) {
+//       return locale
+//     }
+//   }
+
+//   // Default language is english
+//   return 'en'
+// }
+
+// const i18n = new VueI18n({
+//   locale: getLocale(),
+//   messages
+// })
+
+// export default i18n
+
+
+import Vue from "vue"
+import Vue18n from "vue-i18n"
+
+import { getLanguage } from "@/utils/cookies"
+
+// element-ui build-in lang
+import elementEnlocale from "element-ui/lib/locale/lang/en"
+import elementZhlocale from "element-ui/lib/locale/lang/zh-CN"
+import elementEslocale from "element-ui/lib/locale/lang/es"
+import elementJalocale from "element-ui/lib/locale/lang/ja"
+import elementKolocale from "element-ui/lib/locale/lang/ko"
+
+// user defined lang
+import enLocale from "./en"
+import zhLocale from "./zh"
+import esLocale from "./es"
+import jaLocale from "./ja"
+import koLocale from "./ko"
+import itLocale from "./it"
+
+Vue.use(Vue18n)
 
 const messages = {
   en: {
     ...enLocale,
-    ...elementEnLocale
+    ...elementEnlocale
   },
   zh: {
     ...zhLocale,
-    ...elementZhLocale
+    ...elementZhlocale
   },
   es: {
     ...esLocale,
-    ...elementEsLocale
+    ...elementEslocale
   },
   ja: {
     ...jaLocale,
-    ...elementJaLocale
+    ...elementJalocale
   },
   ko: {
     ...koLocale,
-    ...elementKoLocale
+    ...elementKolocale
   },
   it: {
     ...itLocale
@@ -47,26 +121,25 @@ const messages = {
 }
 
 export const getLocale = () => {
-  const cookieLanguage = getLanguage()
-  if (cookieLanguage) {
-    return cookieLanguage
-  }
-
-  const language = navigator.language.toLowerCase()
-  const locales = Object.keys(messages)
-  for (const locale of locales) {
-    if (language.indexOf(locale) > -1) {
-      return locale
+    const cookieLanguage = getLanguage()
+    if(cookieLanguage) {
+        return cookieLanguage
     }
-  }
 
-  // Default language is english
-  return 'en'
+    const language = navigator.language.toLowerCase()
+    const locales = Object.keys(messages)
+    for(const locale of locales) {
+        if(language.indexOf(locale) > -1) {
+            return locale
+        }
+    }
+
+    return "en"
 }
 
-const i18n = new VueI18n({
-  locale: getLocale(),
-  messages
+const i18n = new Vue18n({
+    locale: getLocale(),
+    messages
 })
 
 export default i18n

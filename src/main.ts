@@ -1,45 +1,23 @@
-import Vue, {DirectiveOptions} from "vue";
-import ElementUI from "element-ui"
-import SvgIcon from "vue-svgicon"
+import Vue from "vue"
 
-import "@/style/element-variables.scss"
-import "@/style/index.scss"
-
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import App from "./App.vue"
+import "normalize.css"
+import store from "@/store"
+import router from "@/router"
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
 import {AppModule} from "@/store/modules/app"
-import i18n from '@/lang'
-import '@/icons/components'
-import '@/permission'
-import '@/utils/error-log'
-import '@/pwa/register-service-worker'
-import * as directives from '@/directives'
-import * as filters from '@/filters'
+
+import i18n from "@/lang"
 
 Vue.use(ElementUI, {
     size: AppModule.size,
     i18n: (key: string, value: string) => i18n.t(key, value)
 })
 
-Vue.use(SvgIcon, {
-    tagName: 'svg-icon',
-    defaultWidth: '1em',
-    defaultHeight: '1em'
-})
-
-Object.keys(directives).forEach(key => {
-    Vue.directive(key, (directives as {[key: string]: DirectiveOptions})[key])
-})
-Object.keys(filters).forEach(key => {
-    Vue.filter(key, (filters as {[key: string]: Function})[key])
-})
-
-Vue.config.productionTip = false;
-
 new Vue({
-  router,
-  store,
-  i18n,
-  render: h => h(App)
-}).$mount("#app");
+    router,
+    store,
+    i18n,
+    render: h => h(App)
+}).$mount("#app")
